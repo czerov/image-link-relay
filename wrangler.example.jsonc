@@ -1,0 +1,26 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "image-link-relay",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-06-28",
+  "compatibility_flags": ["nodejs_compat"],
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 1
+  },
+  "vars": {
+    "TELEGRAPH_UPLOAD_URL": "https://your-telegraph-image.example.com/upload",
+    "PUBLIC_IMAGE_BASE_URL": "https://your-telegraph-image.example.com",
+    "MAX_UPLOAD_BYTES": "5242880",
+    "HISTORY_LIMIT": "24",
+    "PAGE_TITLE": "图床上传"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "image-link-relay",
+      "database_id": "replace-with-your-d1-database-id",
+      "migrations_dir": "./migrations"
+    }
+  ]
+}
