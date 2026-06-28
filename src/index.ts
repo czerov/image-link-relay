@@ -1187,6 +1187,12 @@ function renderApp(env: Env): Response {
       try {
         const response = await fetch("/api/images", { headers: secretHeaders() });
         const payload = await response.json();
+        if (response.status === 401) {
+          localStorage.removeItem("uploadSecret");
+          syncAuthState("密钥不正确或已失效，请重新输入");
+          secretInput.focus();
+          return;
+        }
         if (!response.ok || !payload.ok) {
           throw new Error(payload.error || "读取失败");
         }
